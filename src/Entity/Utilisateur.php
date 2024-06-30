@@ -45,9 +45,16 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: role::class, mappedBy: 'roles')]
     private Collection $role;
 
+    #[ORM\Column(length: 255)]
+    private ?string $apiToken = null;
+
+
+
+
     public function __construct()
     {
         $this->role = new ArrayCollection();
+        $this->apiToken=bin2hex(random_bytes(20));
     }
 
     public function getId(): ?int
@@ -175,6 +182,18 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
                 $role->setRoles(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getApiToken(): ?string
+    {
+        return $this->apiToken;
+    }
+
+    public function setApiToken(string $apiToken): static
+    {
+        $this->apiToken = $apiToken;
 
         return $this;
     }
