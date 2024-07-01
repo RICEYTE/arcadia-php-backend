@@ -27,7 +27,13 @@ security:
         - { path: ^/api/registration, roles: PUBLIC_ACCESS }
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/doc, roles: PUBLIC_ACCESS }
-        - { path: ^/api, roles: ROLE_USER }
+        - { path: ^/api/habitat, roles: PUBLIC_ACCESS }
+        - { path: ^/api/service, roles: PUBLIC_ACCESS }
+        - { path: ^/api/contact, roles: PUBLIC_ACCESS }
+        - { path: ^/api/role, roles: PUBLIC_ACCESS }
+        - { path: ^/api/, roles: ROLE_USER }
+        - { path: ^/api/espaceAdmin, roles: ROLE_ADMIN }
+
 when@test:
     security:
         password_hashers:
